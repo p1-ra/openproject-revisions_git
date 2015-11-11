@@ -41,7 +41,7 @@ module OpenProject::Revisions::Git::GitoliteWrapper
     end
 
     def git_daemon_enabled?
-      User.anonymous.allowed_to?(:view_changesets, @project) && repository.extra[:git_daemon]
+      User.anonymous.allowed_to?(:view_changesets, @project) && @repository.extra[:git_daemon]
     end
 
     # Builds the set of permissions for all

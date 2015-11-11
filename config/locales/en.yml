@@ -334,3 +334,6 @@ en:
   # Misc
   label_select_all: Select all
   label_etcetera: etc
+  
+  # GWDG
+  label_manage_git_repository: Manage Git repository
