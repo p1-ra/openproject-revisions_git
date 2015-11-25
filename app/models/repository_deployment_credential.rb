@@ -8,7 +8,7 @@ class RepositoryDeploymentCredential < ActiveRecord::Base
   belongs_to :gitolite_public_key
   belongs_to :user
 
-  attr_accessible :perm, :active
+  attr_accessible :perm, :active, :repository_id, :gitolite_public_key_id, :user_id
 
   validates_presence_of :repository, :gitolite_public_key, :user, :perm
 
