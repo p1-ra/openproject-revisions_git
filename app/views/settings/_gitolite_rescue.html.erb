@@ -1,5 +1,15 @@
+<h3><%= l(:label_gitolite_rescue) %></h3>
+
+<p>
+  <label><%= l(:label_configure_projects) %></label>
+  <%= check_box_tag "settings[gitolite_configure_projects]", true, false %>
+  </br><%= l(:label_configure_projects_desc) %>
+</p
+
+<p></p>
+
 <p>
   <label><%= l(:label_resync_all_projects) %></label>
   <%= check_box_tag "settings[gitolite_resync_all_projects]", true, false %>
-  <p><%= l(:label_resync_all_projects_desc) %></p>
+  <br><%= l(:label_resync_all_projects_desc) %>
 </p
