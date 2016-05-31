@@ -91,6 +91,30 @@ class Repository::Gitolite < Repository::Git
     ::Scm::GitAuthorizationPolicy
   end
 
+  def smart_http_enabled?
+    extra[:git_http] != 0
+  end
+
+  def https_access_enabled?
+    extra[:git_http] == 1 || extra[:git_http] == 2
+  end
+
+  def http_access_enabled?
+    extra[:git_http] == 3 || extra[:git_http] == 2
+  end
+
+  def only_https_access_enabled?
+    extra[:git_http] == 1
+  end
+
+  def only_http_access_enabled?
+    extra[:git_http] == 3
+  end
+
+  def pushable_via_http?
+    https_access_enabled? || http_access_enabled?
+  end
+
   protected
 
   ##

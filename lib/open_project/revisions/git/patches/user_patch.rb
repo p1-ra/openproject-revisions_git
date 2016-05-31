@@ -27,6 +27,18 @@ module OpenProject::Revisions::Git
           [login.underscore.gsub(/[^0-9a-zA-Z\-]/, '_'), '_', id].join
         end
 
+        def allowed_to_manage_repository?(repository)
+          !roles_for_project(repository.project).select { |role| role.allowed_to?(:manage_repository) }.empty?
+        end
+
+        def allowed_to_commit?(repository)
+          allowed_to?(:commit_access, repository.project)
+        end
+
+        def allowed_to_clone?(repository)
+          allowed_to?(:view_changesets, repository.project)
+        end
+
         protected
 
         def update_repositories

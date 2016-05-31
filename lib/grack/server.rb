@@ -84,7 +84,7 @@ module Grack
       args = command
 
       begin
-        RedmineGitHosting::Utils::Exec.capture(cmd, args)
+        OpenProject::Revisions::Git::Utils::Exec.capture(cmd, args)
       rescue => e
         logger.error('Problems while getting SmartHttp params')
       end
@@ -115,12 +115,12 @@ module Grack
 
 
       def gitolite_path(path)
-        File.join(RedmineGitHosting::Config.gitolite_global_storage_dir, RedmineGitHosting::Config.gitolite_redmine_storage_dir, path)
+        File.join(OpenProject::Revisions::Git::Config.gitolite_global_storage_dir, OpenProject::Revisions::Git::Config.gitolite_redmine_storage_dir, path)
       end
 
 
       def directory_exists?(dir)
-        RedmineGitHosting::Commands.sudo_dir_exists?(dir)
+        OpenProject::Revisions::Git::Commands.sudo_dir_exists?(dir)
       end
 
 
@@ -141,19 +141,19 @@ module Grack
 
 
       def git_command_without_chdir
-        RedmineGitHosting::Commands.sudo_git_cmd(smart_http_args)
+        OpenProject::Revisions::Git::Commands.sudo_git_cmd(smart_http_args)
       end
 
 
       def git_command_with_chdir
-        RedmineGitHosting::Commands.sudo_git_args_for_repo(@dir, smart_http_args)
+        OpenProject::Revisions::Git::Commands.sudo_git_args_for_repo(@dir, smart_http_args)
       end
 
 
       def smart_http_args
         [
           'env',
-          "GL_LIBDIR=#{RedmineGitHosting::Config.gitolite_lib_dir_path}",
+          "GL_LIBDIR=#{OpenProject::Revisions::Git::Config.gitolite_lib_dir_path}",
           "GL_REPO=#{repository_object.gitolite_repository_name}",
           "GL_USER=#{@env['REMOTE_USER']}"
         ]
@@ -161,12 +161,12 @@ module Grack
 
 
       def logger
-        RedmineGitHosting.logger
+        OpenProject::Revisions::Git.logger
       end
 
 
       def repository_object
-        @repo ||= Repository::Xitolite.find_by_path(@dir, loose: true)
+        @repo ||= Repository::Gitolite.find_by_path(@dir)
       end
 
   end

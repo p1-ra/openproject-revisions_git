@@ -1,4 +1,4 @@
-module RedmineGitHosting
+module OpenProject::Revisions::Git
   class GitAccessStatus
 
     attr_accessor :status, :message

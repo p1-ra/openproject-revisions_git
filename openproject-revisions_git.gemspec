@@ -18,4 +18,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '>= 4.0', '< 5'
   s.add_dependency 'gitolite-rugged'
+  s.add_dependency 'gitlab-grack'
 end

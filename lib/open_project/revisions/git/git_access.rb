@@ -1,4 +1,4 @@
-module RedmineGitHosting
+module OpenProject::Revisions::Git
   class GitAccess
 
     DOWNLOAD_COMMANDS = %w{ git-upload-pack git-upload-archive }
@@ -87,7 +87,7 @@ module RedmineGitHosting
 
 
       def logger
-        RedmineGitHosting.logger
+        OpenProject::Revisions::Git.logger
       end
 
   end

@@ -49,29 +49,26 @@ module Grack
 
 
       def authenticate_user(login, password)
-        auth = RedmineGitHosting::Auth.new
+        auth = OpenProject::Revisions::Git::Auth.new
         auth.find(login, password)
       end
 
 
       def authorized_request?
         case git_cmd
-        when *RedmineGitHosting::GitAccess::DOWNLOAD_COMMANDS
+        when *OpenProject::Revisions::Git::GitAccess::DOWNLOAD_COMMANDS
           if user
-            RedmineGitHosting::GitAccess.new.download_access_check(user, repository, is_ssl?).allowed?
-          elsif repository.public_project? || repository.public_repo?
+            OpenProject::Revisions::Git::GitAccess.new.download_access_check(user, repository, is_ssl?).allowed?
+          elsif repository.project.is_public?
             # Allow clone/fetch for public projects
             true
           else
             false
           end
-        when *RedmineGitHosting::GitAccess::PUSH_COMMANDS
-          # Push requires valid SSL
-          if !is_ssl?
-            logger.error('SmartHttp : your are trying to push data without SSL!, exiting !')
-            false
-          elsif user
-            RedmineGitHosting::GitAccess.new.upload_access_check(user, repository).allowed?
+        when *OpenProject::Revisions::Git::GitAccess::PUSH_COMMANDS
+          # Push requires valid user
+          if user
+            OpenProject::Revisions::Git::GitAccess.new.upload_access_check(user, repository).allowed?
           else
             false
           end
@@ -100,7 +97,7 @@ module Grack
       def repository_by_path(path)
         if m = /([^\/]+\/)*?[^\/]+\.git/.match(path).to_a
           repo_path = m.first
-          Repository::Xitolite.find_by_path(repo_path, loose: true)
+          Repository::Gitolite.find_by_path(repo_path)
         end
       end
 
@@ -131,7 +128,7 @@ module Grack
 
 
       def logger
-        RedmineGitHosting.logger
+        OpenProject::Revisions::Git.logger
       end
 
   end
