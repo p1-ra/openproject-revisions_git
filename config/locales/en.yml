@@ -152,8 +152,8 @@ en:
 
   ########### MISCELANOUS ###########
 
-  label_enabled: Enabled
-  label_disabled: Disabled
+  label_rg_enabled: Enabled
+  label_rg_disabled: Disabled
   label_true: True
   label_false: False
   label_yes: Yes
@@ -279,6 +279,7 @@ en:
 
   label_gitolite_daemon_by_default: Enable Git Daemon mode for new repositories by default?
   label_gitolite_http_by_default: Enable Smart HTTP mode for new repositories by default?
+  label_gitolite_http: Enable Smart HTTP mode
 
   label_http_only: HTTP Only
   label_https_only: HTTPS Only

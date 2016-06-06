@@ -10,6 +10,7 @@ OpenProject::Application.routes.draw do
   scope 'projects/:project_id' do
     resources :manage_git_repository, controller: 'manage_git_repositories', only: :index
 
+    resources :repository_git_extras, controller: 'repository_git_extras'
     resources :repository_deployment_credentials, controller: 'repository_deployment_credentials'
     resources :repository_post_receive_urls, controller: 'repository_post_receive_urls'
     get 'repository_mirrors/push', :to => 'repository_mirrors#push'

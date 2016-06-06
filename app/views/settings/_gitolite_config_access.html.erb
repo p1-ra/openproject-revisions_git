@@ -20,7 +20,7 @@
 
 <div class="form--field -required">
   <%= styled_label_tag("settings[gitolite_http_by_default]", l(:label_gitolite_http_by_default)) %>
-  <%= styled_select_tag("settings[gitolite_http_by_default]", options_for_select([[l(:label_disabled), "0"], [l(:label_https_only), "1"]], gitolite_http_by_default)) %>
+  <%= styled_select_tag("settings[gitolite_http_by_default]", options_for_select([[l(:label_rg_disabled), 0], [l(:label_https_only), 1], [l(:label_https_and_http), 2], [l(:label_http_only), 3]], gitolite_http_by_default)) %>
 </div>
 
 <div class="form--field">

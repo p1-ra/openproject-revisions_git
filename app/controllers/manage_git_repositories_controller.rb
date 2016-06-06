@@ -11,6 +11,7 @@ class ManageGitRepositoriesController < ApplicationController
   before_filter :find_post_receive_urls
   before_filter :find_mirrors
   before_filter :find_git_config_keys
+  before_filter :find_git_extra
   
   menu_item :manage_git_repositories, only: [:index]
 
@@ -63,5 +64,9 @@ class ManageGitRepositoriesController < ApplicationController
   
   def find_git_config_keys
     @repository_git_config_keys = @repository.repository_git_config_keys.all
+  end
+  
+  def find_git_extra
+    @git_extra = @repository.extra
   end
 end

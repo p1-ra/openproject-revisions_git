@@ -156,8 +156,8 @@ fr:
 
 
   ########### MISCELANOUS ###########
-  label_enabled: Activé
-  label_disabled: Désactivé
+  label_rg_enabled: Activé
+  label_rg_disabled: Désactivé
   label_true: Vrai
   label_false: Faux
   label_yes: Oui
@@ -269,6 +269,7 @@ fr:
 
   label_gitolite_daemon_by_default: Activer le daemon Git pour les nouveaux dépôts par défaut
   label_gitolite_http_by_default: Activer le mode Smart HTTP pour les nouveaux dépôts par défaut
+  label_gitolite_http: Activer le mode Smart HTTP
 
   label_http_only: HTTP seulement
   label_https_only: HTTPS seulement
