@@ -87,11 +87,7 @@ class RepositoryMirrorsController < ApplicationController
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else
-      if User.current.admin? || User.current.allowed_to?(:create_repository_mirrors, @project)
-        @mirror = mirror
-      else
-          render_403
-      end
+      @mirror = mirror
     end
   end
 

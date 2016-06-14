@@ -81,11 +81,7 @@ class RepositoryPostReceiveUrlsController < ApplicationController
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else
-      if User.current.admin? || User.current.allowed_to?(:create_repository_post_receive_urls, @project)
-        @post_receive_url = prurl
-      else
-          render_403
-      end
+      @post_receive_url = prurl
     end
   end
 

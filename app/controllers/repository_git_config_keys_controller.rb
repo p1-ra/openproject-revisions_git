@@ -70,11 +70,7 @@ class RepositoryGitConfigKeysController < ApplicationController
       rescue ActiveRecord::RecordNotFound => e
         render_404
       else
-        if User.current.admin? || User.current.allowed_to?(:create_repository_git_config_keys, @project)
-          @git_config_key = gckey
-        else
-            render_403
-        end
+        @git_config_key = gckey
       end
     end
   

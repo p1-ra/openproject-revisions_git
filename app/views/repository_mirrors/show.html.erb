@@ -62,11 +62,11 @@
                 <td class="center" style="text-align:left;"><%= checked_image mirror.active? %></td>
                 <td class="buttons">
                   <% if User.current.admin? || User.current.allowed_to?(:push_repository_mirrors, @project) %>
-                    <%= link_to "Push to mirror",
-                             { controller: "projects/#{@project.identifier}/repository_mirrors", action: 'push', mirror: mirror},
+                    <%= link_to 'Push to mirror',
+                             { controller: "projects/#{@project.identifier}/repository_mirrors", action: 'push', mirror: mirror },
                              method: :get,
                              class: 'icon icon-double-arrow-right',
-                             confirm: "Are you sure you want to push the latest commits to mirror '#{mirror.url}'" %>
+                             data: { confirm: "Are you sure you want to push the latest commits to mirror '#{mirror.url}'" } %>
                   <% end %>
                   <% if User.current.admin? || User.current.allowed_to?(:edit_repository_mirrors, @project) %>
                     <% if mirror.active? %>

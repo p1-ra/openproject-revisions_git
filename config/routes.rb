@@ -13,7 +13,7 @@ OpenProject::Application.routes.draw do
     resources :repository_git_extras, controller: 'repository_git_extras'
     resources :repository_deployment_credentials, controller: 'repository_deployment_credentials'
     resources :repository_post_receive_urls, controller: 'repository_post_receive_urls'
-    get 'repository_mirrors/push', :to => 'repository_mirrors#push'
+    get 'repository_mirrors/push', :to => 'repository_mirrors#push', as: 'push_repository_mirror'
     resources :repository_mirrors, controller: 'repository_mirrors'
     resources :repository_git_config_keys, controller: 'repository_git_config_keys'
   end

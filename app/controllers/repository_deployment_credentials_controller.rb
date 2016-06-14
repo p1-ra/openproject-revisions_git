@@ -127,11 +127,7 @@ class RepositoryDeploymentCredentialsController < ApplicationController
     rescue ActiveRecord::RecordNotFound => e
       render_404
     else
-      if credential.user && (User.current.admin? || credential.user == User.current)
-        @credential = credential
-      else
-        render_403
-      end
+      @credential = credential
     end
   end
 
