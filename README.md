@@ -4,7 +4,7 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/oliverguenther/openproject-revisions_git?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This plugin aims to provide extensive features for managing Git repositories within [OpenProject](http://www.openproject.org).
-Forked from [jbox-web's version](https://jbox-web.github.io/redmine_git_hosting/) of the long-lived, often-forked redmine-git_hosting plugin (formerly redmine-gitosis).
+Forked from [jbox-web's version](https://jbox-web.github.io/redmine_git_hosting/) of the long-lived and often-forked redmine-git_hosting plugin (formerly redmine-gitosis).
 
 As OpenProject has diverted quite a bit in terms of project management (e.g., Redmine allows multiple repositories per project), some features have been removed in the fork.
 
@@ -15,6 +15,7 @@ As OpenProject has diverted quite a bit in terms of project management (e.g., Re
 * Depends on **Gitolite (v2/v3)**
 * Acts as a **wrapper to the gitolite-admin** to feed Gitolite with SSH keys, repository information
 * Employs **libgit2/rugged** through [gitolite-rugged](https://github.com/oliverguenther/gitolite-rugged).
+* Employs **grack** through [gitlab-grack](https://github.com/jbox-web/grack.git).
 
 ## Features
 
@@ -24,7 +25,7 @@ As OpenProject has diverted quite a bit in terms of project management (e.g., Re
 
 **Gitolite Repository Management**
 
-✓ Managing repositories with Gitolite upon creation, update/deletion (Async w/ delayed_jobs)
+✓ Managing repositories with Gitolite upon creation, update/deletion (async w/ delayed_jobs)
 
 ✓ Members/Roles access written to Gitolite
 
@@ -38,10 +39,10 @@ As OpenProject has diverted quite a bit in terms of project management (e.g., Re
 
 ✓ Git Config Keys
 
-**Planned / Forked, but non-functional / non-tested features**
-(*Ordered by my own subjective importance.*)
+✓ Git Smart-HTTP (access through HTTP/HTTPS in OpenProject)
 
-* Git Smart-HTTP (Access through https in OpenProject)
+**Planned/Forked, but non-functional/non-tested features**
+
 * Initialize Repositories with Readme
 
 **Stripped/Changed features from jbox-web's version**
@@ -51,11 +52,11 @@ As OpenProject has diverted quite a bit in terms of project management (e.g., Re
 * GitHub features (Issues), should be separate plugin
 * Git access cache (belongs in the core)
 * Repository Recycle bin after deletion (Just use your filesystem backups)
-* Notifications / Mailing lists
+* Notifications/Mailing lists
 
 ## Installation
 
-#### 0. (preliminary) [Setup Gitolite v2/v3](http://gitolite.com/gitolite/install.html)
+#### 0. (Preliminary) [Setup Gitolite v2/v3](http://gitolite.com/gitolite/install.html)
 
 I'm assuming you have some basic knowledge of Gitolite and:
 
@@ -71,7 +72,7 @@ You must now add a few manual changes to the Gitolite setup for this plugin to w
 
 **0.a. Add include 'openproject.conf'** to Gitolite
 
-OpenProject uses a separate Gitolite config file to declare repositories. This allows you to define your own stuff in <gitolite-admin.git>/conf/gitolite.conf and allows OpenProject to override its own configuration at all times.
+OpenProject uses a separate Gitolite config file to declare repositories. This allows you to define your own stuff in ``<gitolite-admin.git>/conf/gitolite.conf`` and allows OpenProject to override its own configuration at all times.
 
 Thus, you need to add the following line to ``conf/gitolite.conf`` under the gitolite-admin.git repository:
 
@@ -84,7 +85,7 @@ The ``openproject.conf`` is created and updated from this plugin and contains al
 
 **0.b. Change .gitolite.rc configuration**
 
-We need to adjust a few things in the ``<git home>/.gitolite.rc``configuration file.
+We need to adjust a few things in the ``<git home>/.gitolite.rc`` configuration file.
 
 OpenProject identifies project identifiers in Gitolite through Git config keys, thus you need to alter the .gitolite.rc (In the git user's $HOME) to allow that:
 
@@ -128,6 +129,8 @@ Our post-receive hook is triggered after each commit and is used to fetch change
 
 Add a Gemfile.plugins to your OpenProject root with the following contents:
 
+	gem 'gitlab-grack', git: 'https://github.com/jbox-web/grack.git', require: 'grack', branch: 'fix_rails4'
+	gem 'redcarpet', '~> 3.3.2'
 	gem "openproject-revisions_git", git: "https://github.com/oliverguenther/openproject-revisions_git.git", branch: "release/5.0"
 
 #### 2. Gitolite access rights
