@@ -23,5 +23,5 @@ OpenProject::Application.routes.draw do
   post 'githooks/post-receive/:type/:projectid' => 'gitolite_hooks#post_receive'
 
   # Enable SmartHTTP Grack support
-  mount Grack::Bundle.new({}), at: '/gitolite/', constraints: lambda { |request| /[-\/\w\.]+\.git\//.match(request.path_info) }, via: [:get, :post]
+  #mount Grack::Bundle.new({}), at: '/gitolite/', constraints: lambda { |request| /[-\/\w\.]+\.git\//.match(request.path_info) }, via: [:get, :post]
 end

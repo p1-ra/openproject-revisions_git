@@ -176,8 +176,8 @@ module OpenProject::Revisions::Git
       end
       
       require_dependency 'load_gitolite_hooks'
-      require_dependency 'grack/auth'
-      require_dependency 'grack/server'
+      #require_dependency 'grack/auth'
+      #require_dependency 'grack/server'
     end
 
     initializer 'revisions_git.scm_vendor' do
