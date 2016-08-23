@@ -8,7 +8,7 @@ class CreateRepositoryDeploymentCredentials < ActiveRecord::Migration
 
   #    t.column :active, :integer, default: 1
   #    t.column :perm,   :string, null: false
-   end
+    #end
 
  #   add_index :repository_deployment_credentials, :repository_id
     #The name of the index in next line is too big, it produces an error 
