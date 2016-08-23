@@ -11,7 +11,7 @@ class CreateRepositoryMirrors < ActiveRecord::Migration
      # t.column :include_all_tags, :boolean, :default => false
      # t.column :explicit_refspec, :string, :default => ""
      # t.timestamps :null => false
-    end
+    # end
     
    # add_index :repository_mirrors, :repository_id
   end
