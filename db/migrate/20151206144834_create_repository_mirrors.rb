@@ -1,7 +1,7 @@
 class CreateRepositoryMirrors < ActiveRecord::Migration
   
   def self.up
-    create_table :repository_mirrors do |t|
+    #create_table :repository_mirrors do |t|
      # t.references :repository
 
       #t.column :active, :integer, :default => 1
