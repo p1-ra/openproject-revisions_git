@@ -1,13 +1,13 @@
 class CreateRepositoryDeploymentCredentials < ActiveRecord::Migration
 
   def self.up
-    create_table :repository_deployment_credentials do |t|
-      t.references :repository
-      t.references :gitolite_public_key
-      t.references :user
+    #create_table :repository_deployment_credentials do |t|
+    #  t.references :repository
+    #  t.references :gitolite_public_key
+    #  t.references :user#
 
-      t.column :active, :integer, default: 1
-      t.column :perm,   :string, null: false
+    #  t.column :active, :integer, default: 1
+    #  t.column :perm,   :string, null: false
     end
 
     add_index :repository_deployment_credentials, :repository_id
@@ -17,7 +17,7 @@ class CreateRepositoryDeploymentCredentials < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :repository_deployment_credentials
+   # drop_table :repository_deployment_credentials
 
   end
 
