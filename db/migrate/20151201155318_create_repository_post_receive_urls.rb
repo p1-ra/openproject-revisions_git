@@ -8,7 +8,7 @@ class CreateRepositoryPostReceiveUrls < ActiveRecord::Migration
     #  t.column :url, :string
     #  t.column :mode, :string, :default => "github"
     #  t.timestamps :null => false
-    end
+     #end
 	  
    # add_index :repository_post_receive_urls, :repository_id
   end
